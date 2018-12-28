@@ -15,8 +15,6 @@ import java.util.Collections;
 
 public class QuizActivity extends AppCompatActivity {
 
-    // 総問題数
-    final int maxQuestionNum = 10;
     // 現在の問題番号
     int currentQuestionNo = 1;
     // 現在の問題
@@ -70,15 +68,17 @@ public class QuizActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (currentQuestionNo >= maxQuestionNum) {
+                if (currentQuestionNo >= questions.size()) {
                     // 全問題回答完了後は終了シーケンスに突入
                     Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
                     intent.putExtra("correctNum", correctNum);
-                    intent.putExtra("totalNum", maxQuestionNum);
+                    intent.putExtra("totalNum", questions.size());
                     startActivity(intent);
+
+                    // このActivityは以降不要なので、終了させとく
+                    finish();
                 } else {
                     currentQuestionNo++;
-                    // TODO : 次の問題の準備
                     currentQuestion = questions.get(currentQuestionNo - 1);
                     showQuestion();
                 }
@@ -101,16 +101,16 @@ public class QuizActivity extends AppCompatActivity {
 
         // 回答一覧
         String[] ansList = currentQuestion.getAnsList();
-        // 1
+        // #1
         TextView ans1Text = this.findViewById(R.id.ans_1_text);
         ans1Text.setText(ansList[0]);
-        // 2
+        // #2
         TextView ans2Text = this.findViewById(R.id.ans_2_text);
         ans2Text.setText(ansList[1]);
-        // 3
+        // #3
         TextView ans3Text = this.findViewById(R.id.ans_3_text);
         ans3Text.setText(ansList[2]);
-        // 4
+        // #4
         TextView ans4Text = this.findViewById(R.id.ans_4_text);
         ans4Text.setText(ansList[3]);
     }
@@ -187,7 +187,7 @@ public class QuizActivity extends AppCompatActivity {
         // #12
         {
             String question = "富田林の警察署を脱走した窃盗犯が、逃走に際して偽っていた身分は？";
-            String[] ansList = {"グラップラー", "チャリダー", "ディアハンター", "バックパッカー"};
+            String[] ansList = {"ナチュラリスト", "サイクリスト", "ダンドリスト", "マキャベリスト"};
             pushQuestion(question, ansList, 1);
         }
         // #13
@@ -214,7 +214,30 @@ public class QuizActivity extends AppCompatActivity {
             String[] ansList = {"北海道・秩父別町", "鳥取県・湯梨浜町", "群馬県・鼻毛石町", "鹿児島県・志布志市"};
             pushQuestion(question, ansList, 1);
         }
-        // TODO : 暇な時に追加する
+        // #17
+        {
+            String question = "オウム真理教の元代表・麻原彰晃の死刑執行が遂に行われた。さて、以下のカルトのうち、代表が地球系霊団の至高神「エル・カンターレ」を名乗る集団はどれ？";
+            String[] ansList = {"創価学会", "統一教会", "幸福の科学", "サイエントロジー"};
+            pushQuestion(question, ansList, 2);
+        }
+        // #18
+        {
+            String question = "年末に札幌で隣接する居酒屋を吹き飛ばしたアパマン爆発騒動。以下のうち、爆発大国・中国で実際に爆発した実績のあるものはどれ？";
+            String[] ansList = {"小川", "毛沢東像", "天安門広場", "原子力発電所"};
+            pushQuestion(question, ansList, 0);
+        }
+        // #19
+        {
+            String question = "IR実施法案(カジノ法案)が2018年、国会で成立した。さて、日本の公営ギャンブルのうち、テラ銭が一番高い(=還元率が一番悪い)ものは？";
+            String[] ansList = {"競輪", "サッカーくじ", "競馬", "宝くじ"};
+            pushQuestion(question, ansList, 3);
+        }
+        // #20
+        {
+            String question = "遂に上映となったQueenのドキュメンタリー映画・ボヘミアン・ラプソディー。Queenのボーカル、フレディ・マーキュリーの出生国は？";
+            String[] ansList = {"タンザニア", "インド", "パキスタン", "イギリス"};
+            pushQuestion(question, ansList, 0);
+        }
 
         // かき混ぜる
         Collections.shuffle(questions);

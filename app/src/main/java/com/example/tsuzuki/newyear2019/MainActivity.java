@@ -20,5 +20,8 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View v) {
         Intent intent = new Intent(this, QuizActivity.class);
         startActivity(intent);
+
+        // このActivityは以降不要なので、終了させとく
+        finish();
     }
 }

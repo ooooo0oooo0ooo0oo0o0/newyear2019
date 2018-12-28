@@ -1,12 +1,10 @@
 package com.example.tsuzuki.newyear2019;
 
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
@@ -46,9 +44,15 @@ public class ResultActivity extends AppCompatActivity {
         // 何もしない(無効化)
     }
 
+    // 終了ボタン押下
+    public void onPushFinish(View v) {
+        // おしまい
+        finish();
+    }
+
+    // 成果に応じた絵と文言の表示処理
     public void showMisc(double doublePercent) {
 
-        // 成果によって絵と文言を決める
         ImageView imageView = findViewById(R.id.resultImage);
         Drawable drawable;
 
@@ -59,14 +63,17 @@ public class ResultActivity extends AppCompatActivity {
             textView.setText("すげーよ！全問正解！\n いちまんえーん！");
         } else if (doublePercent >= 80.0) {
             drawable = getResources().getDrawable(R.drawable.result_80);
-            textView.setText("よくやった。\n￥４０００やるよ。");
+            textView.setText("よくやった。\n￥５０００よ♡");
         } else if (doublePercent >= 60.0) {
             drawable = getResources().getDrawable(R.drawable.result_60);
-            textView.setText("おしい。\n￥３０００だな。");
+            textView.setText("おしいね。\n￥４０００だな。");
         } else if (doublePercent >= 40.0) {
             drawable = getResources().getDrawable(R.drawable.result_40);
-            textView.setText("もうちょい新聞読め。\n￥２０００だ。");
+            textView.setText("もう少し頑張れよー。\n￥３０００だな。");
         } else if (doublePercent >= 20.0) {
+            drawable = getResources().getDrawable(R.drawable.result_20);
+            textView.setText("もうちょい新聞読め。\n￥２０００だ。");
+        } else if (doublePercent >= 1.0) {
             drawable = getResources().getDrawable(R.drawable.result_20);
             textView.setText("￥１０００くれてやる。\n情けだ。");
         } else {
@@ -74,6 +81,5 @@ public class ResultActivity extends AppCompatActivity {
             textView.setText("今年はお年玉なしじゃぁー！");
         }
         imageView.setImageDrawable(drawable);
-
     }
 }
