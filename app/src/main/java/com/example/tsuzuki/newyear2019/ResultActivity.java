@@ -51,7 +51,7 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     // 成果に応じた絵と文言の表示処理
-    public void showMisc(double doublePercent) {
+    private void showMisc(double doublePercent) {
 
         ImageView imageView = findViewById(R.id.resultImage);
         Drawable drawable;

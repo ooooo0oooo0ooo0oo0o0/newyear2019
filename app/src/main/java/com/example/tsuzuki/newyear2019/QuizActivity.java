@@ -90,7 +90,7 @@ public class QuizActivity extends AppCompatActivity {
 
 
     // 問題画面表示処理
-    public void showQuestion() {
+    private void showQuestion() {
         // 問題番号
         TextView questionNum = this.findViewById(R.id.questionNum);
         questionNum.setText("[第" + currentQuestionNo + "問]");
@@ -115,7 +115,7 @@ public class QuizActivity extends AppCompatActivity {
         ans4Text.setText(ansList[3]);
     }
 
-    public void createQuestions() {
+    private void createQuestions() {
         // 問題文をガンガン突っ込む
         // TODO : xmlを読み込む等の方式にしたい。暇な時にやる。
         // #01
